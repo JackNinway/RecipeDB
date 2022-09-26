@@ -10,6 +10,7 @@ public class RecipeIngredient {
     @Column(name = "recipe_ingredient_id" )
     private int id;
     private double amount;
+    @Enumerated(EnumType.STRING)
     private Measurement measurement;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -18,7 +19,7 @@ public class RecipeIngredient {
 
     @ManyToOne(cascade  = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
+        private Recipe recipe;
 
     public RecipeIngredient() {    }
 

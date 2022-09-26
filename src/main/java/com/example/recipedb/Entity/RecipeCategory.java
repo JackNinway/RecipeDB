@@ -1,6 +1,7 @@
 package com.example.recipedb.Entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 @Entity
@@ -14,13 +15,37 @@ public class RecipeCategory {
     @JoinTable(name = "recipe_recipe_category",
                joinColumns =@JoinColumn(name = "recipe_category_id"),
                inverseJoinColumns = @JoinColumn(name = "recipe_id")  )
-    private Set<Recipe> recipe;
+    private Set<Recipe> recipes ;
 
     public RecipeCategory() {    }
 
-    public RecipeCategory(String category, Set<Recipe> recipe) {
+    public RecipeCategory(String category) {
         this.category = category;
-        this.recipe = recipe;
+    }
+
+    public RecipeCategory(String category, Set<Recipe> recipes) {
+        this.category = category;
+        this.recipes = recipes;
+    }
+    public void addRecipe(Recipe r) {
+
+        if (r == null) throw new IllegalArgumentException("Recipe was null");
+        if (recipes == null)
+            setRecipe(new HashSet<>());
+
+        if (!recipes.contains(r)) {
+            r.getCategories().add(this);
+            recipes.add(r);
+        }
+    }
+    public void removeRecipe(Recipe r) {
+        if (recipes == null) throw new IllegalArgumentException("Parameter Book was null");
+        if (recipes == null) setRecipe(new HashSet<>());
+
+        if (recipes.contains(r)) {
+            r.getCategories().remove(this);
+            recipes.remove(r);
+        }
     }
 
     public int getId() {
@@ -36,11 +61,11 @@ public class RecipeCategory {
     }
 
     public Set<Recipe> getRecipe() {
-        return recipe;
+        return recipes;
     }
 
     public void setRecipe(Set<Recipe> recipe) {
-        this.recipe = recipe;
+        this.recipes = recipe;
     }
 
     @Override
@@ -61,7 +86,7 @@ public class RecipeCategory {
         return "RecipeCategory{" +
                 "id=" + id +
                 ", category='" + category + '\'' +
-                ", recipe=" + recipe +
+                ", recipe=" + recipes +
                 '}';
     }
 }

@@ -9,7 +9,7 @@ public class RecipeInstruction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "instructions_id")
     private int id;
-//    @Column(length = 1500)
+    @Column(length = 1500)
     private String instructions;
 
     public RecipeInstruction() {    }
