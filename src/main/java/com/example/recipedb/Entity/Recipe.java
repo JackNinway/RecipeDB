@@ -55,8 +55,8 @@ public class Recipe {
             categories.add(rc);
         }
     }
-    public void removeBook(RecipeCategory rc) {
-        if (rc == null) throw new IllegalArgumentException("Parameter Book was null");
+    public void removeCategory(RecipeCategory rc) {
+        if (rc == null) throw new IllegalArgumentException("Recipe category was null");
         if (categories == null) setCategories(new HashSet<>());
 
         if (categories.contains(rc)) {
