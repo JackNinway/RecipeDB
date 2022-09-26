@@ -60,16 +60,16 @@ public class MyCommandLineRunner implements CommandLineRunner {
                 new RecipeInstruction("Add water and boil")
         );
     }
-    public List<RecipeIngredient> lRecipesIngredient(List<Ingredient> lIngredients, List<Recipe> lRecipes){
-        return Arrays.asList(
-                new RecipeIngredient(2, HG, lIngredients().get(0), lRecipes(lRecipeInstruction()).get(0)),
-                new RecipeIngredient(4, HG, lIngredients().get(1), lRecipes(lRecipeInstruction()).get(1))
-                );
-    }
-    public List<Recipe> lRecipes(List<RecipeInstruction> lRecipeInstruction){
+    public List<Recipe> lRecipes(){
         return Arrays.asList(
                 new Recipe("Bread", lRecipeInstruction().get(0)),
                 new Recipe("Rice", lRecipeInstruction().get(1))
+        );
+    }
+    public List<RecipeIngredient> lRecipesIngredient(){
+        return Arrays.asList(
+                new RecipeIngredient(2, HG, lIngredients().get(0), lRecipes().get(0)),
+                new RecipeIngredient(4, HG, lIngredients().get(1), lRecipes().get(1))
                 );
     }
 
@@ -87,13 +87,18 @@ public class MyCommandLineRunner implements CommandLineRunner {
                 "\n_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_\n" );
     }
     public  void addDataToMyDB(){
+        lRecipeCategory().get(0).addRecipe(lRecipes().get(0));
+        lRecipeCategory().get(1).addRecipe(lRecipes().get(1));
 
 //        ingredientRepo.saveAll(lIngredients());
         recipeCategoryRepo.saveAll(lRecipeCategory());
 //        recipeInstructionRepo.saveAll(lRecipeInstruction());
 //        recipeRepo.saveAll(lRecipes(lRecipeInstruction()));
-        recipeIngredientRepo.saveAll(lRecipesIngredient(lIngredients(), lRecipes(lRecipeInstruction())));
-        lRecipeCategory().get(0).addRecipe(lRecipes().get(0));
+        recipeIngredientRepo.saveAll(lRecipesIngredient());
+//        recipeRepo.saveAll(lRecipes());
+
+//        recipeIngredientRepo.saveAll(lRecipesIngredient(lIngredients(), lRecipes(lRecipeInstruction())));
+//        lRecipeCategory().get(0).addRecipe(lRecipes().get(0));
 
     }
 }
