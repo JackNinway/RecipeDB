@@ -16,7 +16,10 @@ public class Ingredient {
     public Ingredient(String ingredientName) {
         this.ingredientName = ingredientName;
     }
-
+    public void addToRecipeIngredient(RecipeIngredient recipeIngredient){
+        if(recipeIngredient==null) throw new IllegalArgumentException("RecipeIngredient is null");
+        recipeIngredient.setIngredient(this);
+    }
     public int getId() {
         return id;
     }

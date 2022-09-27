@@ -1,10 +1,7 @@
 package com.example.recipedb.Entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Recipe {
@@ -39,31 +36,59 @@ public class Recipe {
         this.recipeIngredients = recipeIngredients;
     }
 
-    public Recipe(String recipeName, RecipeInstruction instruction, List<RecipeIngredient> recipeIngredients, Set<RecipeCategory> categories) {
-        this.recipeName = recipeName;
-        this.instruction = instruction;
-        this.recipeIngredients = recipeIngredients;
-        this.categories = categories;
+//    public Recipe(String recipeName, RecipeInstruction instruction, List<RecipeIngredient> recipeIngredients, Set<RecipeCategory> categories) {
+//        this.recipeName = recipeName;
+//        this.instruction = instruction;
+//        this.recipeIngredients = recipeIngredients;
+//        this.categories = categories;
+//    }
+    public void addToRecipeIngredient(RecipeIngredient recipeIngredient){
+        if(recipeIngredient==null) throw new IllegalArgumentException("RecipeIngredient is null");
+        recipeIngredient.setRecipe(this);
     }
-    public void addCategory(RecipeCategory rc) {
 
-        if (rc == null) throw new IllegalArgumentException("RecipeCategory was null");
-        if (categories == null) setCategories(new HashSet<>());
+    public void addRecIngr(RecipeIngredient ri) {
+
+        if (ri == null) throw new IllegalArgumentException("recipeIngredients was null");
+        if (recipeIngredients == null)
+            setRecipeIngredients(new ArrayList<>());
+
+        if (!recipeIngredients.contains(ri)) {
+            ri.setRecipe(this);
+            recipeIngredients.add(ri);
+        }
+    }
+    public void removeRecIngr(RecipeIngredient ri) {
+        if (ri == null) throw new IllegalArgumentException(" recipeIngredients was null");
+        if (recipeIngredients == null)
+            setRecipeIngredients(new ArrayList<>());
+
+        if (recipeIngredients.contains(ri)) {
+//            ri.getRecipe().remove(this);
+            recipeIngredients.remove(ri);
+        }
+    }
+//:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+    public void addCategory(RecipeCategory rc) {
+        if (rc == null) throw new IllegalArgumentException("category was null");
+        if (categories == null)
+            setCategories(new HashSet<>());
 
         if (!categories.contains(rc)) {
             rc.getRecipe().add(this);
             categories.add(rc);
         }
     }
-    public void removeCategory(RecipeCategory rc) {
-        if (rc == null) throw new IllegalArgumentException("Recipe category was null");
+    public void removeRecipe(Recipe rc) {
+        if (categories == null) throw new IllegalArgumentException("category was null");
         if (categories == null) setCategories(new HashSet<>());
 
         if (categories.contains(rc)) {
-            rc.getRecipe().remove(this);
+            rc.getCategories().remove(this);
             categories.remove(rc);
         }
     }
+//:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
 
     public int getId() {
         return id;
@@ -114,14 +139,14 @@ public class Recipe {
         return Objects.hash(id, recipeName);
     }
 
-    @Override
-    public String toString() {
-        return "Recipe{" +
-                "id=" + id +
-                ", recipeName='" + recipeName + '\'' +
-                ", instruction=" + instruction +
-                ", recipeIngredients=" + recipeIngredients +
-                ", categories=" + categories +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Recipe{" +
+//                "id=" + id +
+//                ", recipeName='" + recipeName + '\'' +
+//                ", instruction=" + instruction +
+//                ", recipeIngredients=" + recipeIngredients +
+//                ", categories=" + categories +
+//                '}';
+//    }
 }

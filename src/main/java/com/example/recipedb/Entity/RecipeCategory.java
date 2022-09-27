@@ -15,7 +15,7 @@ public class RecipeCategory {
     @JoinTable(name = "recipe_recipe_category",
                joinColumns =@JoinColumn(name = "recipe_category_id"),
                inverseJoinColumns = @JoinColumn(name = "recipe_id")  )
-    private Set<Recipe> recipes ;
+    private Set<Recipe> recipes = new HashSet<>();
 
     public RecipeCategory() {    }
 
@@ -28,17 +28,16 @@ public class RecipeCategory {
         this.recipes = recipes;
     }
     public void addRecipe(Recipe r) {
-
         if (r == null) throw new IllegalArgumentException("Recipe was null");
-        if (recipes == null)
-            setRecipe(new HashSet<>());
+//        if (recipes == null)
+//            setRecipe(new HashSet<>());
 
         if (!recipes.contains(r)) {
             r.getCategories().add(this);
             recipes.add(r);
         }
     }
-    public void removeRecipe(Recipe r) {
+        public void removeRecipe(Recipe r) {
         if (recipes == null) throw new IllegalArgumentException("Parameter Book was null");
         if (recipes == null) setRecipe(new HashSet<>());
 
@@ -81,12 +80,12 @@ public class RecipeCategory {
         return Objects.hash(id, category);
     }
 
-    @Override
-    public String toString() {
-        return "RecipeCategory{" +
-                "id=" + id +
-                ", category='" + category + '\'' +
-                ", recipe=" + recipes +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "RecipeCategory{" +
+//                "id=" + id +
+//                ", category='" + category + '\'' +
+//                ", recipe=" + recipes +
+//                '}';
+//    }
 }
