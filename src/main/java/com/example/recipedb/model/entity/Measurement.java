@@ -1,4 +1,4 @@
-package com.example.recipedb.Entity;
+package com.example.recipedb.model.entity;
 
 public enum Measurement {
     TBSP,

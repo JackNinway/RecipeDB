@@ -1,7 +1,6 @@
-package com.example.recipedb.Data;
+package com.example.recipedb.repo;
 
-import com.example.recipedb.Entity.Ingredient;
-import com.example.recipedb.Entity.Recipe;
+import com.example.recipedb.model.entity.Recipe;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Collection;

@@ -1,20 +1,10 @@
-package com.example.recipedb.Data;
+package com.example.recipedb.repo;
 
-import com.example.recipedb.Entity.Ingredient;
-import com.example.recipedb.Entity.Recipe;
-import com.example.recipedb.Entity.RecipeIngredient;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static com.example.recipedb.Entity.Measurement.*;
-import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 class RecipeRepoTest {
 

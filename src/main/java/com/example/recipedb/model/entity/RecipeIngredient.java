@@ -1,7 +1,11 @@
-package com.example.recipedb.Entity;
+package com.example.recipedb.model.entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Objects;
+
+import static javax.persistence.CascadeType.*;
 
 @Entity
 public class RecipeIngredient {
@@ -13,11 +17,11 @@ public class RecipeIngredient {
     @Enumerated(EnumType.STRING)
     private Measurement measurement;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne( cascade  = {PERSIST, MERGE, DETACH, REFRESH})
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
-    @ManyToOne(cascade  = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade  = {MERGE, DETACH, REFRESH})
     @JoinColumn(name = "recipe_id")
         private Recipe recipe;
 
@@ -64,6 +68,7 @@ public class RecipeIngredient {
         this.ingredient = ingredient;
     }
 
+    @JsonBackReference
     public Recipe getRecipe() {
         return recipe;
     }

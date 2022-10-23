@@ -1,7 +1,12 @@
-package com.example.recipedb.Entity;
+package com.example.recipedb.model.entity;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.*;
+
+import static javax.persistence.CascadeType.*;
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
 public class Recipe {
@@ -13,11 +18,10 @@ public class Recipe {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instruction_id")
     private RecipeInstruction instruction;
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "recipe", cascade = {MERGE, REFRESH, DETACH}, fetch = LAZY)
     private List<RecipeIngredient> recipeIngredients;
-    @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH},
-            mappedBy = "recipes")
-    private Set<RecipeCategory> categories;
+    @ManyToMany(cascade = {PERSIST, REFRESH, MERGE}, mappedBy = "recipes")
+    private Set<RecipeCategory> categories = new HashSet<RecipeCategory>();
 
     public Recipe() {    }
 
@@ -42,10 +46,6 @@ public class Recipe {
 //        this.recipeIngredients = recipeIngredients;
 //        this.categories = categories;
 //    }
-    public void addToRecipeIngredient(RecipeIngredient recipeIngredient){
-        if(recipeIngredient==null) throw new IllegalArgumentException("RecipeIngredient is null");
-        recipeIngredient.setRecipe(this);
-    }
 
     public void addRecIngr(RecipeIngredient ri) {
 
@@ -54,7 +54,6 @@ public class Recipe {
             setRecipeIngredients(new ArrayList<>());
 
         if (!recipeIngredients.contains(ri)) {
-            ri.setRecipe(this);
             recipeIngredients.add(ri);
         }
     }
@@ -64,7 +63,6 @@ public class Recipe {
             setRecipeIngredients(new ArrayList<>());
 
         if (recipeIngredients.contains(ri)) {
-//            ri.getRecipe().remove(this);
             recipeIngredients.remove(ri);
         }
     }
@@ -75,17 +73,17 @@ public class Recipe {
             setCategories(new HashSet<>());
 
         if (!categories.contains(rc)) {
+            this.categories.add(rc);
             rc.getRecipe().add(this);
-            categories.add(rc);
         }
     }
-    public void removeRecipe(Recipe rc) {
-        if (categories == null) throw new IllegalArgumentException("category was null");
+    public void removeCategory(RecipeCategory rc) {
+        if (rc == null) throw new IllegalArgumentException("category was null");
         if (categories == null) setCategories(new HashSet<>());
 
         if (categories.contains(rc)) {
-            rc.getCategories().remove(this);
-            categories.remove(rc);
+            this.categories.remove(rc);
+            rc.getRecipe().remove(this);
         }
     }
 //:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
@@ -109,7 +107,7 @@ public class Recipe {
     public void setInstruction(RecipeInstruction instruction) {
         this.instruction = instruction;
     }
-
+    @JsonManagedReference
     public List<RecipeIngredient> getRecipeIngredients() {
         return recipeIngredients;
     }
@@ -139,14 +137,14 @@ public class Recipe {
         return Objects.hash(id, recipeName);
     }
 
-//    @Override
-//    public String toString() {
-//        return "Recipe{" +
-//                "id=" + id +
-//                ", recipeName='" + recipeName + '\'' +
-//                ", instruction=" + instruction +
-//                ", recipeIngredients=" + recipeIngredients +
-//                ", categories=" + categories +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", recipeName='" + recipeName + '\'' +
+                ", instruction=" + instruction +
+                ", recipeIngredients=" + recipeIngredients +
+                ", categories=" + categories +
+                '}';
+    }
 }

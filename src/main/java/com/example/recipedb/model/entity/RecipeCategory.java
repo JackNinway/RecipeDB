@@ -1,9 +1,14 @@
-package com.example.recipedb.Entity;
+package com.example.recipedb.model.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import static javax.persistence.CascadeType.*;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 public class RecipeCategory {
     @Id
@@ -11,11 +16,11 @@ public class RecipeCategory {
     @Column(name = "recipe_category_id")
     private int id;
     private String category;
-    @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
+    @ManyToMany(cascade = {PERSIST, MERGE, DETACH, REFRESH}, fetch = LAZY)
     @JoinTable(name = "recipe_recipe_category",
-               joinColumns =@JoinColumn(name = "recipe_category_id"),
-               inverseJoinColumns = @JoinColumn(name = "recipe_id")  )
-    private Set<Recipe> recipes = new HashSet<>();
+            joinColumns =@JoinColumn(name = "recipe_category_id"),
+            inverseJoinColumns = @JoinColumn(name = "recipe_id")  )
+    private Set<Recipe> recipes = new HashSet<Recipe>();
 
     public RecipeCategory() {    }
 
@@ -27,25 +32,25 @@ public class RecipeCategory {
         this.category = category;
         this.recipes = recipes;
     }
-    public void addRecipe(Recipe r) {
-        if (r == null) throw new IllegalArgumentException("Recipe was null");
+//    public void addRecipe(Recipe r) {
+//        if (r == null) throw new IllegalArgumentException("Recipe was null");
 //        if (recipes == null)
 //            setRecipe(new HashSet<>());
-
-        if (!recipes.contains(r)) {
-            r.getCategories().add(this);
-            recipes.add(r);
-        }
-    }
-        public void removeRecipe(Recipe r) {
-        if (recipes == null) throw new IllegalArgumentException("Parameter Book was null");
-        if (recipes == null) setRecipe(new HashSet<>());
-
-        if (recipes.contains(r)) {
-            r.getCategories().remove(this);
-            recipes.remove(r);
-        }
-    }
+//
+//        if (!recipes.contains(r)) {
+//            r.getCategories().add(this);
+//            recipes.add(r);
+//        }
+//    }
+//        public void removeRecipe(Recipe r) {
+//        if (recipes == null) throw new IllegalArgumentException("Parameter Book was null");
+//        if (recipes == null) setRecipe(new HashSet<>());
+//
+//        if (recipes.contains(r)) {
+//            r.getCategories().remove(this);
+//            recipes.remove(r);
+//        }
+//    }
 
     public int getId() {
         return id;

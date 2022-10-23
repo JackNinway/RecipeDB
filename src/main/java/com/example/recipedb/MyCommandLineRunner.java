@@ -1,7 +1,8 @@
 package com.example.recipedb;
 
-import com.example.recipedb.Data.*;
-import com.example.recipedb.Entity.*;
+import com.example.recipedb.repo.*;
+import com.example.recipedb.model.entity.*;
+import com.example.recipedb.model.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
@@ -11,10 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static com.example.recipedb.Entity.Measurement.*;
-import static com.example.recipedb.Entity.Measurement.G;
+import static com.example.recipedb.model.entity.Measurement.*;
 
 @Profile("dev")
 @Transactional
@@ -42,40 +41,40 @@ public class MyCommandLineRunner implements CommandLineRunner {
     private final RecipeInstructionRepo recipeInstructionRepo;
     private final RecipeRepo recipeRepo;
 
-    public List<Ingredient> lIngredients(){
-        return Arrays.asList(
-                new Ingredient("Rice"),
-                new Ingredient("Water")
-        );
-    }
-    public List<RecipeCategory> lRecipeCategory(){
-        return Arrays.asList(
-                new RecipeCategory("Vegan"),
-                new RecipeCategory("Chicken")
-        );
-    }
-    public List<RecipeInstruction> lRecipeInstruction(){
-        return Arrays.asList(
-                new RecipeInstruction("Melt butter in a pan, add rice and salt and fry it for some minutes"),
-                new RecipeInstruction("Add water and boil")
-        );
-    }
-    public List<Recipe> lRecipes(){
-        return Arrays.asList(
-                new Recipe("Bread", lRecipeInstruction().get(0)),
-                new Recipe("Rice", lRecipeInstruction().get(1))
-        );
-    }
-    public List<RecipeIngredient> lRecipesIngredient(){
-        return Arrays.asList(
-                new RecipeIngredient(2, HG, lIngredients().get(0), lRecipes().get(0)),
-                new RecipeIngredient(4, HG, lIngredients().get(1), lRecipes().get(1))
-                );
-    }
+//    public List<Ingredient> lIngredients(){
+//        return Arrays.asList(
+//                new Ingredient("Rice"),
+//                new Ingredient("Water")
+//        );
+//    }
+//    public List<RecipeCategory> lRecipeCategory(){
+//        return Arrays.asList(
+//                new RecipeCategory("Vegan"),
+//                new RecipeCategory("Chicken")
+//        );
+//    }
+//    public List<RecipeInstruction> lRecipeInstruction(){
+//        return Arrays.asList(
+//                new RecipeInstruction("Melt butter in a pan, add rice and salt and fry it for some minutes"),
+//                new RecipeInstruction("Add water and boil")
+//        );
+//    }
+//    public List<Recipe> lRecipes(){
+//        return Arrays.asList(
+//                new Recipe("Bread", lRecipeInstruction().get(0)),
+//                new Recipe("Rice", lRecipeInstruction().get(1))
+//        );
+//    }
+//    public List<RecipeIngredient> lRecipesIngredient(){
+//        return Arrays.asList(
+//                new RecipeIngredient(2, HG, lIngredients().get(0), lRecipes().get(0)),
+//                new RecipeIngredient(4, HG, lIngredients().get(1), lRecipes().get(1))
+//                );
+//    }
 
     @Override
     public void run(String... args) throws Exception {
-        addDataToMyDB();
+//        addDataToMyDB();
         List<Recipe> found = recipeRepo.findRecipesByRecipeNameContaining("ice");
         System.out.println("\n" +found +
                 "\n_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_\n" );
@@ -106,7 +105,10 @@ public class MyCommandLineRunner implements CommandLineRunner {
         recipeCategoryRepo.save(vegan);
         recipeCategoryRepo.save(chicken);
         rRice.addCategory(vegan);
+
+// =======================================
 //        vegan.addRecipe(rRice);
+
 //        chicken.addRecipe(rRice);
 
 //        rice.addToRecipeIngredient(rIrice);
