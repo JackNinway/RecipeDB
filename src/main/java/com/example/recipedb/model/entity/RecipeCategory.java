@@ -1,5 +1,8 @@
 package com.example.recipedb.model.entity;
 
+import com.fasterxml.jackson.annotation.*;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -10,13 +13,15 @@ import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
+//@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class RecipeCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recipe_category_id")
     private int id;
     private String category;
-    @ManyToMany(cascade = {PERSIST, MERGE, DETACH, REFRESH}, fetch = LAZY)
+//    @JsonBackReference
+    @ManyToMany(cascade = {PERSIST, MERGE}, fetch = LAZY)
     @JoinTable(name = "recipe_recipe_category",
             joinColumns =@JoinColumn(name = "recipe_category_id"),
             inverseJoinColumns = @JoinColumn(name = "recipe_id")  )
@@ -32,25 +37,6 @@ public class RecipeCategory {
         this.category = category;
         this.recipes = recipes;
     }
-//    public void addRecipe(Recipe r) {
-//        if (r == null) throw new IllegalArgumentException("Recipe was null");
-//        if (recipes == null)
-//            setRecipe(new HashSet<>());
-//
-//        if (!recipes.contains(r)) {
-//            r.getCategories().add(this);
-//            recipes.add(r);
-//        }
-//    }
-//        public void removeRecipe(Recipe r) {
-//        if (recipes == null) throw new IllegalArgumentException("Parameter Book was null");
-//        if (recipes == null) setRecipe(new HashSet<>());
-//
-//        if (recipes.contains(r)) {
-//            r.getCategories().remove(this);
-//            recipes.remove(r);
-//        }
-//    }
 
     public int getId() {
         return id;
@@ -79,18 +65,17 @@ public class RecipeCategory {
         RecipeCategory that = (RecipeCategory) o;
         return id == that.id && Objects.equals(category, that.category);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id, category);
     }
-
-//    @Override
-//    public String toString() {
-//        return "RecipeCategory{" +
-//                "id=" + id +
-//                ", category='" + category + '\'' +
-//                ", recipe=" + recipes +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "RecipeCategory{" +
+                "id=" + id +
+                ", category='" + category + '\'' +
+//                ", recipes=" + recipes +
+                '}';
+    }
 }
+

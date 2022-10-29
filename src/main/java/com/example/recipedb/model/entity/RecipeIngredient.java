@@ -68,7 +68,7 @@ public class RecipeIngredient {
         this.ingredient = ingredient;
     }
 
-    @JsonBackReference
+//    @JsonBackReference
     public Recipe getRecipe() {
         return recipe;
     }
@@ -97,7 +97,7 @@ public class RecipeIngredient {
                 ", amount=" + amount +
                 ", measurement=" + measurement +
                 ", ingredient=" + ingredient +
-                ", recipe=" + recipe +
+                ", recipe_id=" + recipe.getId() +
                 '}';
     }
 }

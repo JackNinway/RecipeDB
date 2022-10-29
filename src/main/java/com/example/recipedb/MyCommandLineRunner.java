@@ -74,7 +74,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        addDataToMyDB();
+        addDataToMyDB();
         List<Recipe> found = recipeRepo.findRecipesByRecipeNameContaining("ice");
         System.out.println("\n" +found +
                 "\n_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_-~'´`'~-_\n" );
@@ -90,38 +90,20 @@ public class MyCommandLineRunner implements CommandLineRunner {
         Ingredient water = new Ingredient("Water");
         ingredientRepo.save(rice);
         ingredientRepo.save(water);
-//        recipeInstructionRepo.save(new RecipeInstruction("add rice..."));
         Recipe rRice = new Recipe("Rice",new RecipeInstruction("Add water and boil"));
-        recipeRepo.save(rRice);
-
         RecipeIngredient rIrice = new RecipeIngredient(2, HG, rice);
         RecipeIngredient rIwater = new RecipeIngredient(4, HG, water);
-        recipeIngredientRepo.save(rIrice);
-        recipeIngredientRepo.save(rIwater);
         rRice.addRecIngr(rIrice);
         rRice.addRecIngr(rIwater);
         RecipeCategory vegan = new RecipeCategory("Vegan");
-        RecipeCategory chicken = new RecipeCategory("Chicken");
-        recipeCategoryRepo.save(vegan);
-        recipeCategoryRepo.save(chicken);
+//        RecipeCategory chicken = new RecipeCategory("Chicken");
         rRice.addCategory(vegan);
 
-// =======================================
-//        vegan.addRecipe(rRice);
-
-//        chicken.addRecipe(rRice);
-
-//        rice.addToRecipeIngredient(rIrice);
-//        water.addToRecipeIngredient(rIwater);
-
-//        ingredientRepo.saveAll(lIngredients());
-//        recipeCategoryRepo.saveAll(lRecipeCategory());
-//        recipeInstructionRepo.saveAll(lRecipeInstruction());
-//        recipeRepo.saveAll(lRecipes(lRecipeInstruction()));
-//        recipeIngredientRepo.saveAll(lRecipesIngredient());
-//        recipeRepo.saveAll(lRecipes());
-//        recipeIngredientRepo.saveAll(lRecipesIngredient(lIngredients(), lRecipes(lRecipeInstruction())));
-//        lRecipeCategory().get(0).addRecipe(lRecipes().get(0));
+        recipeIngredientRepo.save(rIrice);
+        recipeIngredientRepo.save(rIwater);
+        recipeCategoryRepo.save(vegan);
+//        recipeCategoryRepo.save(chicken);
+        recipeRepo.save(rRice);
 
     }
 }
