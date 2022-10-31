@@ -1,0 +1,474 @@
+{
+	"info": {
+		"_postman_id": "f2110f2f-afb7-49bf-8d4f-cca2f88344c0",
+		"name": "Ingr, RecipeIngr, RecipeCategory, RecipeInstr",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23930503"
+	},
+	"item": [
+		{
+			"name": "Find Ingredient By id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/ingr/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"ingr",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new ingredient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ingredientName\": \"sallad\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/ingr",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"ingr"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete ingredient by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/ingr/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"ingr",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find category bu id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/cat/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"cat",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new Category",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "        {\r\n            \"category\": \"Fish\"\r\n        }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/cat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"cat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Ingredient",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"ingredientName\": \"Potatoe\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/ingr/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"ingr",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new Category",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "        {\r\n            \"category\": \"Fish\"\r\n        }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/cat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"cat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find category bu id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/cat/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"cat",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete RecipeCategory",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/cat/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"cat",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update RecipeCategory",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"category\": \"chicken\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/cat/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"cat",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Recipe Ingredient",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/recingr/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"recingr",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Recipe Ingredient",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 2.0,\r\n    \"measurement\": \"HG\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/recingr/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"recingr",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find by id RecipIngr",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/recingr/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"recingr",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create RecipeIngr",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 2.0,\r\n    \"measurement\": \"HG\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/recingr",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"recingr"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Recipe Instruction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"instructions\": \"add salt..\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/recinstr",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"recinstr"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Recipe Instr",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/recinstr/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"recinstr",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Recipe Instr",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/rest/misc/recinstr/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rest",
+						"misc",
+						"recinstr",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Recipe Instr",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "Delete Recipe Instr",
+					"host": [
+						"Delete Recipe Instr"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
