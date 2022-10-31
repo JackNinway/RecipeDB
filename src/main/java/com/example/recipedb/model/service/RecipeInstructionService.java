@@ -1,4 +1,4 @@
-package com.example.recipedb.service;
+package com.example.recipedb.model.service;
 
 import com.example.recipedb.model.dto.RecipeIngredientDto;
 import com.example.recipedb.model.dto.RecipeInstructionDto;
@@ -10,9 +10,9 @@ import java.util.List;
 public interface RecipeInstructionService {
 
    RecipeInstructionDto create (RecipeInstructionForm form);
-   boolean delete(Integer personId);
-   RecipeInstructionDto update(Integer personId, RecipeInstructionForm updateForm);
-   RecipeInstructionDto findById(Integer personId);
+   boolean delete(Integer id);
+   RecipeInstructionDto update(Integer id, RecipeInstructionForm updateForm);
+   RecipeInstructionDto findById(Integer id);
 
    List<RecipeInstructionDto> findAll();
 }

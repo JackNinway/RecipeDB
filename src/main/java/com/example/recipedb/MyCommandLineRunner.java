@@ -96,13 +96,11 @@ public class MyCommandLineRunner implements CommandLineRunner {
         rRice.addRecIngr(rIrice);
         rRice.addRecIngr(rIwater);
         RecipeCategory vegan = new RecipeCategory("Vegan");
-//        RecipeCategory chicken = new RecipeCategory("Chicken");
         rRice.addCategory(vegan);
 
         recipeIngredientRepo.save(rIrice);
         recipeIngredientRepo.save(rIwater);
         recipeCategoryRepo.save(vegan);
-//        recipeCategoryRepo.save(chicken);
         recipeRepo.save(rRice);
 
     }

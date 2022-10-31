@@ -1,4 +1,4 @@
-package com.example.recipedb.service;
+package com.example.recipedb.model.service;
 
 import com.example.recipedb.model.dto.IngredientDto;
 import com.example.recipedb.model.dto.RecipeDto;
@@ -13,9 +13,9 @@ import java.util.Set;
 public interface IngredientService {
 
    IngredientDto create (IngredientForm form);
-   boolean delete(Integer personId);
-   IngredientDto update(Integer personId, IngredientForm updateForm);
-   IngredientDto findById(Integer personId);
+   boolean delete(Integer id);
+   IngredientDto update(Integer id, IngredientForm updateForm);
+   IngredientDto findById(Integer id);
    List<IngredientDto> findAll();
 
 }

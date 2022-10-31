@@ -1,11 +1,8 @@
-package com.example.recipedb.service;
+package com.example.recipedb.model.service;
 
 import com.example.recipedb.model.dto.*;
-import com.example.recipedb.model.entity.Recipe;
-import com.example.recipedb.model.entity.RecipeCategory;
-import com.example.recipedb.model.entity.RecipeIngredient;
-import com.example.recipedb.model.entity.RecipeInstruction;
-import com.example.recipedb.model.forms.RecipeForm;
+import com.example.recipedb.model.entity.*;
+import com.example.recipedb.model.forms.*;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
@@ -15,11 +12,31 @@ import java.util.List;
 import java.util.Set;
 @Service
 public class ConversionService {
-   public Recipe toRecipe(@NotNull RecipeForm form){
-      return new Recipe(form.getRecipeName(), new RecipeInstruction(), new ArrayList<>(), new HashSet<>());
-//              form.getInstruction(), form.getRecipeIngredients(), form.getCategories());
+   public Ingredient toIngredient(@NotNull IngredientForm form){
+      return new Ingredient(form.getIngredientName());
    }
+   public IngredientDto toIngredientDto(@NotNull Ingredient ingr){
+      return new IngredientDto(ingr.getId(), ingr.getIngredientName());
+   }
+   //:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+   public RecipeInstruction toRInstr(@NotNull RecipeInstructionForm form){
+      return new RecipeInstruction(form.getInstructions());
+   }
+   public RecipeInstructionDto toRInstrDto(@NotNull RecipeInstruction instr){
+      return new RecipeInstructionDto(instr.getId(), instr.getInstructions());
+   }
+   public RecipeCategory toRCat(@NotNull RecipeCategoryForm rCatForm){
+      return new RecipeCategory(rCatForm.getCategory(), rCatForm.getRecipes());
+   }
+   public RecipeIngredient toRIngr(@NotNull RecipeIngredientForm rIngrForm){
+      return new RecipeIngredient(rIngrForm.getAmount(), rIngrForm.getMeasurement(),
+                                rIngrForm.getIngredient(), rIngrForm.getRecipe());
+   }
+   //:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
 
+   public Recipe toRecipe(@NotNull RecipeForm form){
+      return new Recipe(form.getRecipeName(), null, new ArrayList<>(), new HashSet<>());
+   }
    public RecipeDto toRecipeDto (Recipe recipe) {
 
       List<RecipeIngredientDtoSmall> rIlist = new ArrayList<>();

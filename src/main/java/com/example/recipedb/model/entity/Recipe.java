@@ -53,7 +53,7 @@ public class Recipe {
 
     public void addRecIngr(RecipeIngredient ri) {
 
-        if (ri == null) throw new IllegalArgumentException("recipeIngredients was null");
+        if (ri == null) throw new IllegalArgumentException("RecipeIngredients was null");
         if (recipeIngredients == null)
             setRecipeIngredients(new ArrayList<>());
 
@@ -72,7 +72,21 @@ public class Recipe {
             ri.setRecipe(null);
         }
     }
-//:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+
+    /**  alternativ till ovan
+    public void addRecIngr(RecipeIngredient...rIngrs) {
+        if(rIngrs == null || rIngrs.length == 0) return;
+        if(this.recipeIngredients == null)
+            this.recipeIngredients = new ArrayList<>();
+        for(RecipeIngredient rI : rIngrs){
+            if(!this.recipeIngredients.contains(rI)){
+                this.recipeIngredients.add(rI);
+                rI.setRecipe(this);
+            }
+        }
+    }
+*/
+    //:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
     public void addCategory(RecipeCategory rc) {
         if (rc == null) throw new IllegalArgumentException("category was null");
         if (categories == null)
