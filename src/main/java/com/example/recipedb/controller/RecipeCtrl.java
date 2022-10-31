@@ -3,7 +3,7 @@ package com.example.recipedb.controller;
 import com.example.recipedb.model.dto.RecipeDto;
 import com.example.recipedb.model.forms.RecipeForm;
 import com.example.recipedb.repo.RecipeRepo;
-import com.example.recipedb.model.service.RecipeService;
+import com.example.recipedb.service.RecipeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

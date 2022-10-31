@@ -1,4 +1,4 @@
-package com.example.recipedb.model.service;
+package com.example.recipedb.service;
 
 import com.example.recipedb.model.dto.RecipeCategoryDto;
 import com.example.recipedb.model.dto.RecipeDto;

@@ -2,7 +2,7 @@ package com.example.recipedb.controller;
 
 import com.example.recipedb.model.dto.*;
 import com.example.recipedb.model.forms.*;
-import com.example.recipedb.model.service.*;
+import com.example.recipedb.model.*;
 import com.example.recipedb.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

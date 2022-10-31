@@ -1,4 +1,4 @@
-package com.example.recipedb.model.service;
+package com.example.recipedb.service;
 
 import com.example.recipedb.exception.AppResourceNotFoundException;
 import com.example.recipedb.model.dto.RecipeIngredientDto;
